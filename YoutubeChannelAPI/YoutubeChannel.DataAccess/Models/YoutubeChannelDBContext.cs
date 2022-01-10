@@ -18,6 +18,7 @@ namespace YoutubeChannel.DataAccess.Models
         }
 
         public virtual DbSet<Admin> Admins { get; set; }
+        public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,7 +26,7 @@ namespace YoutubeChannel.DataAccess.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-08PF7QE\\SQLEXPRESS;Database=YoutubeChannelDB;Trusted_Connection=True");
+                optionsBuilder.UseSqlServer("Server=aws-mssql.ccwoalcofcne.us-east-1.rds.amazonaws.com;Database=YoutubeChannelDB;User ID=admin;Password=KmargoStyl3;");
             }
         }
 
@@ -63,11 +64,39 @@ namespace YoutubeChannel.DataAccess.Models
                     .HasColumnName("password");
             });
 
+            modelBuilder.Entity<Log>(entity =>
+            {
+                entity.ToTable("Logs", "YT");
+
+                entity.Property(e => e.LogId).HasColumnName("logId");
+
+                entity.Property(e => e.Action)
+                    .IsRequired()
+                    .HasMaxLength(100)
+                    .HasColumnName("action");
+
+                entity.Property(e => e.LogDate)
+                    .HasColumnType("datetime")
+                    .HasColumnName("logDate")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Message)
+                    .IsRequired()
+                    .HasColumnName("message");
+
+                entity.Property(e => e.Status)
+                    .IsRequired()
+                    .HasMaxLength(20)
+                    .HasColumnName("status");
+            });
+
             modelBuilder.Entity<Video>(entity =>
             {
                 entity.ToTable("videos", "YT");
 
-                entity.Property(e => e.VideoId).HasColumnName("videoId");
+                entity.Property(e => e.VideoId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("videoId");
 
                 entity.Property(e => e.Media)
                     .IsRequired()
@@ -75,6 +104,7 @@ namespace YoutubeChannel.DataAccess.Models
 
                 entity.Property(e => e.Title)
                     .IsRequired()
+                    .HasMaxLength(1000)
                     .HasColumnName("title");
 
                 entity.Property(e => e.UploadDate)
