@@ -11,8 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using EncryptorDecryptor;
-using YoutubeChannel.DataAccess.Models;
+using YoutubeChannelAPI.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
+using YoutubeChannelAPI;
+using YoutubeChannelAPI.DataAccess.Repos;
 
 namespace YoutubeChannelAPI
 {
@@ -37,6 +39,8 @@ namespace YoutubeChannelAPI
             string encryptedConnectionString = Configuration.GetConnectionString("YoutubeChannelDB");
             string decryptedConnectionString = EncryptorDecryptor.EncryptorDecryptor.Decrypt(encryptedConnectionString, iv, key);
             services.AddDbContext<YoutubeChannelDBContext>(options => options.UseSqlServer(decryptedConnectionString));
+            services.AddTransient<IRepo<Admin>, AdminRepo>();
+            services.AddTransient<IRepo<Video>, VideoRepo>();
             services.AddControllers();
         }
 
@@ -53,6 +57,7 @@ namespace YoutubeChannelAPI
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

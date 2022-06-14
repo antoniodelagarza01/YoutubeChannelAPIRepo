@@ -2,10 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using YoutubeChannel.DataAccess.Models;
+using YoutubeChannelAPI.DataAccess.Models;
 using System.Linq;
 
-namespace YoutubeChannel.DataAccess.Repos
+namespace YoutubeChannelAPI.DataAccess.Repos
 {
     public class AdminRepo : IRepo<Admin>
     {
@@ -18,7 +18,7 @@ namespace YoutubeChannel.DataAccess.Repos
         }
         public bool Delete(int id)
         {
-            int result = Convert.ToInt32(context.Videos.FromSqlRaw("YT.sp_deleteAdmin_admin {0}", id));
+            int result = Convert.ToInt32(context.Videos.FromSqlInterpolated($"exec YT.sp_deleteAdmin_admin {id}"));
             if (result == 1)
             {
                 return true;
@@ -28,17 +28,36 @@ namespace YoutubeChannel.DataAccess.Repos
 
         public IEnumerable<Admin> Get()
         {
-            return context.Admins.ToList();
+            try
+            {
+                var result = context.Admins;
+                return result.ToList();
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
+           
         }
 
         public Admin GetOne(int id)
         {
-            return context.Admins.FirstOrDefault(x => x.AdminId == id);
+            try
+            {
+                var result = context.Admins.FirstOrDefault(x => x.AdminId == 1);
+                return result;
+            }
+            catch (Exception)
+            {
+
+                return null;
+            }
         }
 
         public bool Post(Admin item)
         {
-            int result = Convert.ToInt32(context.Videos.FromSqlRaw("YT.sp_insertAdmin_admin {0}, {1}, {2}, {3}", item.FirstName, item.LastName, item.Email, item.Password));
+            int result = Convert.ToInt32(context.Videos.FromSqlInterpolated($"exec YT.sp_insertAdmin_admin {item.FirstName}, {item.LastName}, {item.Email}, {item.Password}"));
             if (result == 1)
             {
                 return true;
@@ -48,7 +67,7 @@ namespace YoutubeChannel.DataAccess.Repos
 
         public bool Put(Admin item)
         {
-            int result = Convert.ToInt32(context.Videos.FromSqlRaw("YT.sp_updateAdmin_admin {0}, {1}, {2}, {3}", item.AdminId, item.FirstName, item.FirstName, item.Password));
+            int result = Convert.ToInt32(context.Videos.FromSqlInterpolated($"exec YT.sp_updateAdmin_admin {item.AdminId}, {item.FirstName}, {item.LastName}, {item.Password}"));
             if (result == 1)
             {
                 return true;

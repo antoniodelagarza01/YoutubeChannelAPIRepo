@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace YoutubeChannel.DataAccess.Models
+namespace YoutubeChannelAPI.DataAccess.Models
 {
     public partial class YoutubeChannelDBContext : DbContext
     {
