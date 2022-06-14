@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace YoutubeChannel.DataAccess.Repos
+namespace YoutubeChannelAPI.DataAccess.Repos
 {
-    interface IRepo<T>
+    public interface IRepo<T>
     {
         public IEnumerable<T> Get();
         public T GetOne(int id);

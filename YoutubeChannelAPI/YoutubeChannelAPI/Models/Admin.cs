@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace YoutubeChannelAPI.DataAccess.Models
+namespace YoutubeChannelAPI.Models
 {
-    public partial class Admin
+    public class Admin
     {
         public int AdminId { get; set; }
         public string FirstName { get; set; }

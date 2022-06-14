@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace YoutubeChannel.DataAccess.Models
+namespace YoutubeChannelAPI.DataAccess.Models
 {
     public partial class Log
     {

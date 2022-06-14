@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace YoutubeChannelAPI.DataAccess.Models
+namespace YoutubeChannelAPI.Models
 {
-    public partial class Video
+    public class Video
     {
         public int VideoId { get; set; }
         public string Title { get; set; }

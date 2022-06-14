@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeChannelAPI", "YoutubeChannelAPI\YoutubeChannelAPI.csproj", "{D87924E8-F090-47C0-8B52-64947E14D65C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeChannelAPI", "YoutubeChannelAPI\YoutubeChannelAPI.csproj", "{D87924E8-F090-47C0-8B52-64947E14D65C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeChannel.DataAccess", "YoutubeChannel.DataAccess\YoutubeChannel.DataAccess.csproj", "{B0532E7E-C7D3-49AA-9FF5-2E6D10237E6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeChannelAPI.DataAccess", "YoutubeChannel.DataAccess\YoutubeChannelAPI.DataAccess.csproj", "{B0532E7E-C7D3-49AA-9FF5-2E6D10237E6A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptorDecryptor", "EncryptorDecryptor\EncryptorDecryptor.csproj", "{1CE549CA-D77D-411F-9E80-41585F152E8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B0532E7E-C7D3-49AA-9FF5-2E6D10237E6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0532E7E-C7D3-49AA-9FF5-2E6D10237E6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0532E7E-C7D3-49AA-9FF5-2E6D10237E6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE549CA-D77D-411F-9E80-41585F152E8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE549CA-D77D-411F-9E80-41585F152E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE549CA-D77D-411F-9E80-41585F152E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE549CA-D77D-411F-9E80-41585F152E8F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

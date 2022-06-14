@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace YoutubeChannel.DataAccess.Models
+namespace YoutubeChannelAPI.DataAccess.Models
 {
     public partial class YoutubeChannelDBContext : DbContext
     {
@@ -21,14 +21,15 @@ namespace YoutubeChannel.DataAccess.Models
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=aws-mssql.ccwoalcofcne.us-east-1.rds.amazonaws.com;Database=YoutubeChannelDB;User ID=admin;Password=KmargoStyl3;");
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                
+               
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

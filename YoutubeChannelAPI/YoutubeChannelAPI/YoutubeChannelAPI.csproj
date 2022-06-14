@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\YoutubeChannel.DataAccess\YoutubeChannel.DataAccess.csproj" />
+    <ProjectReference Include="..\EncryptorDecryptor\EncryptorDecryptor.csproj" />
+    <ProjectReference Include="..\YoutubeChannel.DataAccess\YoutubeChannelAPI.DataAccess.csproj" />
   </ItemGroup>
 
 
