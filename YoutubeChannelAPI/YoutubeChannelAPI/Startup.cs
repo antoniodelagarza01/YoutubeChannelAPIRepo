@@ -61,6 +61,7 @@ namespace YoutubeChannelAPI
 
             app.UseEndpoints(endpoints =>
             {
+                
                 endpoints.MapControllers();
             });
         }
