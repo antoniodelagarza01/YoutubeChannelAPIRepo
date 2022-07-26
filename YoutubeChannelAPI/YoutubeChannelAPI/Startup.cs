@@ -26,7 +26,7 @@ namespace YoutubeChannelAPI
         }
 
         public IConfiguration Configuration { get; }
-        private readonly string allowAllOrigins = "_allowAllOrigins";
+        private readonly string allowSelectedOrigins = "_allowSelectedOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -42,6 +42,11 @@ namespace YoutubeChannelAPI
             services.AddTransient<IRepo<Admin>, AdminRepo>();
             services.AddTransient<IRepo<Video>, VideoRepo>();
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(allowSelectedOrigins, b => b.WithOrigins("https://localhost:44394/"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +60,7 @@ namespace YoutubeChannelAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors(allowSelectedOrigins);
 
             app.UseAuthorization();
 
